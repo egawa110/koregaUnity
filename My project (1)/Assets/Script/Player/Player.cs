@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
@@ -26,10 +27,10 @@ public class Player : MonoBehaviour
     public int strongPower; //強攻撃
     public int lightPower;  //弱攻撃
     public int defense;     //防御
-    bool heal20; //回復フラグ
-    bool heal50; //回復フラグ
-    bool heal100; //回復フラグ
-
+    bool heal_20; //回復フラグ
+    bool heal_50; //回復フラグ
+    bool heal_100; //回復フラグ
+    public GameObject HealEffect;
     //-----------------------
     public int coin;        //コイン
     public bool PlayerDeth; //死亡フラグ
@@ -48,6 +49,15 @@ public class Player : MonoBehaviour
         Defense = 0,
 
     }
+    IEnumerator HealEffect_Time()//回復エフェクト
+    {
+        Debug.Log("開始");
+        HealEffect.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        HealEffect.SetActive(false);
+        Debug.Log("2秒後に再開");
+    }
+
     void Awake() //Startより早く呼ばれる
     {
         hp = (int)m_PStatus.HP + StatusButton.shop_hp;                               //hp
@@ -124,35 +134,61 @@ public class Player : MonoBehaviour
         var digit2Key = current.digit2Key; //2キーの入力状態取得
         var digit3Key = current.digit3Key; //3キーの入力状態取得
         //20回復
-        if (digit1Key.isPressed && !heal20 
+        if (digit1Key.isPressed && !heal_20 
             && HealButton.potion1 > 0)
         {
             if(maxhp > hp)
-                hp += 20;
-            HealButton.potion1 -= 1;
-            heal20 = true;
+            {
+                hp += HealButton.potion1_heal;
+                HealButton.potion1--;
+                heal_20 = true;
+                StartCoroutine(HealEffect_Time());//回復エフェクト
+                if (hp >= maxhp)
+                {
+                    hp = maxhp;
+                }
+
+            }
         }
         //50回復
-        if (digit2Key.isPressed && !heal50
+        if (digit2Key.isPressed && !heal_50
             && HealButton.potion2 > 0)
         {
             if (maxhp > hp)
-                hp += 50;
-            HealButton.potion2 -= 1;
-            heal50 = true;
+            {
+                hp += HealButton.potion2_heal;
+                HealButton.potion2--;
+                heal_50 = true;
+                StartCoroutine(HealEffect_Time());//回復エフェクト
+
+                if (hp >= maxhp)
+                {
+                    hp = maxhp;
+                }
+
+            }
         }
         //100回復
-        if (digit3Key.isPressed && !heal100
+        if (digit3Key.isPressed && !heal_100
             && HealButton.potion3 > 0)
         {
             if (maxhp > hp)
-                hp += 100;
-            HealButton.potion3 -= 1;
-            heal100 = true;
+            {
+                hp += HealButton.potion3_heal;
+                HealButton.potion3--;
+                heal_100 = true;
+                StartCoroutine(HealEffect_Time());//回復エフェクト
+
+                if (hp >= maxhp)
+                {
+                    hp = maxhp;
+                }
+
+            }
         }
-        if (!digit1Key.isPressed) heal20 = false;
-        if (!digit2Key.isPressed) heal50 = false;
-        if (!digit3Key.isPressed) heal100 = false;
+        if (!digit1Key.isPressed) heal_20 = false;
+        if (!digit2Key.isPressed) heal_50 = false;
+        if (!digit3Key.isPressed) heal_100 = false;
 
         //HPが0になると消える
         if (hp <= 0)

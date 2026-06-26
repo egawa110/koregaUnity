@@ -11,10 +11,10 @@ public class ThrustEnemy : MonoBehaviour
     public GameObject thrustAttack;  //攻撃オブジェクト
     public GameObject apeffectObj;
     public GameObject target;        //ターゲット
-    public const int power = 10;
+    public const int power = 20;
 
     public const int hp = 20;
-    public const int thrust_money = 30;
+    public const int thrust_money = 200;
     public GameObject money;
 
     //クールタイム

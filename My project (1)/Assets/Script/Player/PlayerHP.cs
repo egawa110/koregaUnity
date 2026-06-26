@@ -8,13 +8,31 @@ public class PlayerHP : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("ThrustAttack")) //ThrustAttackTag‚ÉÕ“Ë
+        //ThrustEnemy‚ÌUŒ‚
+        if (other.CompareTag("ThrustAttack")) 
         {
-            player.hp -= ThrustEnemy.power; //“G‚Ìƒ_ƒ[ƒW‚ğó‚¯‚½
-            Debug.Log("‚P‚Oƒ_ƒ[ƒWó‚¯‚½");
-            //hpb.HPbar(player.hp);
-
+            player.hp -= ThrustEnemy.power; 
         }
+        //TacklEnemy‚ÌUŒ‚
+        if (other.CompareTag("TacklAttack")) 
+        {
+            player.hp -= TacklEnemy.power; 
+        }
+        //BulletEnemy‚ÌUŒ‚
+        if (other.CompareTag("BulletAttack")) 
+        {
+            player.hp -= BulletEnemy.power; 
+        }
+        //BOSS‚ÌUŒ‚
+        if (other.CompareTag("BossThrust")) 
+        {
+            player.hp -= BossEnemy.thrust_power; 
+        }
+        if (other.CompareTag("BossAround")) 
+        {
+            player.hp -= BossEnemy.around_power; 
+        }
+
         if (other.CompareTag("Abyss"))
         {
             player.abyssflag = true;

@@ -16,6 +16,10 @@ TagManager:
   - MovingBridge
   - Wall
   - PlayerHP
+  - TacklAttack
+  - BulletAttack
+  - BossThrust
+  - BossAround
   layers:
   - Default
   - TransparentFX

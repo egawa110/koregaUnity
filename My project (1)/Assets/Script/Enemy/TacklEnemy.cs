@@ -8,7 +8,7 @@ public class TacklEnemy : MonoBehaviour
     private bool ap = false;          //攻撃準備
 
     public const int hp = 50;
-    public const int tackl_money = 100;
+    public const int tackl_money = 500;
     public GameObject money;
 
     public bool  attack    = false;   //攻撃のアニメーションとオブジェクト用]
@@ -16,7 +16,7 @@ public class TacklEnemy : MonoBehaviour
     public GameObject tacklAttack;    //攻撃オブジェクト
     public GameObject apeffectObj;    //攻撃前のエフェクト
     public GameObject target;         //ターゲット
-
+    public const int power = 30;
     //判定フラグ
     public bool player_flag = false;
     public bool wall_flag = false;

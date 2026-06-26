@@ -9,5 +9,7 @@ public class ButtonManager : MonoBehaviour
     public void ChengeScene()
     {
         SceneManager.LoadScene(SceneName); //ƒV[ƒ“ˆÚ“®
+        Time.timeScale = 1;
+
     }
 }

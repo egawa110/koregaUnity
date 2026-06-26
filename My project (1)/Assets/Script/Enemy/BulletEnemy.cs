@@ -14,11 +14,11 @@ public class BulletEnemy : MonoBehaviour
     private GameObject bullet;       //弾のオブジェクト
     public GameObject apeffectObj;   //攻撃前のエフェクト
     public GameObject target;        //ターゲット
-    public const int power = 10;
+    public const int power = 20;
     public float bulletSpeed;
 
     public const int hp = 10;
-    public const int bullet_money = 50;
+    public const int bullet_money = 300;
     public GameObject money;
 
     //クールタイム

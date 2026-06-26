@@ -27,7 +27,7 @@ public class StatusButton : MonoBehaviour
         {
             shop_hp += 10;
             Money_text.money -= hp_price;
-            hp_price += 50;
+            hp_price += 10;
 
         }
     }
@@ -53,7 +53,7 @@ public class StatusButton : MonoBehaviour
         {
             shop_lightPower += 10;
             Money_text.money -= lgp_price;
-            lgp_price += 50;
+            lgp_price += 20;
 
         }
 

@@ -20,8 +20,9 @@ public class BossEnemy : MonoBehaviour
     public GameObject money;
     public Slider hpSlider; //UIスライダー
     int maxhp;
-
-    //public const int thrust_power = 10; 
+    //攻撃力
+    public const int thrust_power = 50;
+    public const int around_power = 30;
 
     //クールタイム
     public int Count; //攻撃までのカウントダウン

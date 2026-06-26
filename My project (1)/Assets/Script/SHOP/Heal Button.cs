@@ -3,9 +3,13 @@ using UnityEngine.UI;
 
 public class HealButton : MonoBehaviour
 {
-    public static int potion1;
-    public static int potion2;
-    public static int potion3;
+    public static int potion1 = 5;
+    public static int potion2 = 5;
+    public static int potion3 = 5;
+
+    public const int potion1_heal = 20;
+    public const int potion2_heal = 50;
+    public const int potion3_heal = 100;
 
     public static int potion1_price = 100;
     public static int potion2_price = 500;
@@ -19,10 +23,8 @@ public class HealButton : MonoBehaviour
     public Text[] potion2_priceText;
     public Text[] potion3_priceText;
 
-
     void Start()
     {
-        
     }
 
     public void potion1_button()
