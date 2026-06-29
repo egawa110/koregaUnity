@@ -14,6 +14,7 @@ public class BossEnemy : MonoBehaviour
     public GameObject aroundAttack;  //周囲攻撃
     public GameObject apeffectObj;   //攻撃前エフェクト
     public GameObject target;        //ターゲット
+    public GameObject wall;
     //ステータス
     public const int hp = 1000;
     public const int boss_money = 1000;
@@ -96,6 +97,7 @@ public class BossEnemy : MonoBehaviour
             enemy.money = boss_money;
             money.SetActive(true);
             Destroy(hpSlider.gameObject);
+            wall.SetActive(false);
         }
     }
 }
