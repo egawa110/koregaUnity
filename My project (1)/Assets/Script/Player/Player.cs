@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
 public class Player : MonoBehaviour
 {
     public Vector3 PlayerPos;       //プレイヤーの位置
@@ -51,11 +50,9 @@ public class Player : MonoBehaviour
     }
     IEnumerator HealEffect_Time()//回復エフェクト
     {
-        Debug.Log("開始");
         HealEffect.SetActive(true);
         yield return new WaitForSeconds(2f);
         HealEffect.SetActive(false);
-        Debug.Log("2秒後に再開");
     }
 
     void Awake() //Startより早く呼ばれる
