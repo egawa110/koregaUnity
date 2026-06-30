@@ -6,7 +6,7 @@ public class MoveGround : MonoBehaviour
     public Vector3 GRotation;
     private float x, y, z;
 
-    const float Speed = 0.03f; //地面の傾くスピード
+    const float Speed = 13f; //地面の傾くスピード
     const float MaxTilt = 20;  //最大傾き
     const float MinTilt = -20; //最小傾き
     enum angle //playerの向き
@@ -42,42 +42,27 @@ public class MoveGround : MonoBehaviour
             //キーが押されているかどうか
             if (wKey.isPressed && x < MaxTilt)
             {
-                x += Speed;
+                x += Speed * Time.deltaTime;
                 //プレイヤーの向き
             }
             if (sKey.isPressed && x > MinTilt)
             {
-                x -= Speed;
+                x -= Speed * Time.deltaTime;
 
             }
             if (aKey.isPressed && z < MaxTilt)
             {
-                z += Speed;
+                z += Speed * Time.deltaTime;
 
             }
             if (dKey.isPressed && z > MinTilt)
             {
-                z -= Speed;
+                z -= Speed * Time.deltaTime;
 
             }
 
         }
-        //ワープ
-        //foreach (var ws in wp)
-        //{
-        //    if (ws.WarpFlag == true)
-        //    {
-        //        x = 0; y = 0; z = 0;
-        //        GRotation = Vector3.zero;
-        //        transform.eulerAngles = Vector3.zero;
-        //    }
-        //}
-        //if (player.abyssflag) //プレイヤーがワープ時地面の傾き初期化
-        //{
-        //    x = 0; y = 0; z = 0;
-        //    GRotation = Vector3.zero;
-        //    transform.eulerAngles = Vector3.zero;
-        //}
+        //リセット
         if(Player.pos_reset_flag == true)
         {
             x = 0; y = 0; z = 0;
