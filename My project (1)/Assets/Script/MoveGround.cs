@@ -6,7 +6,7 @@ public class MoveGround : MonoBehaviour
     public Vector3 GRotation;
     private float x, y, z;
 
-    const float Speed = 13f; //地面の傾くスピード
+    const float Speed = 13.5f; //地面の傾くスピード
     const float MaxTilt = 20;  //最大傾き
     const float MinTilt = -20; //最小傾き
     enum angle //playerの向き

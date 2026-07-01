@@ -450,7 +450,7 @@ GameObject:
   - component: {fileID: 829060545}
   - component: {fileID: 829060544}
   - component: {fileID: 829060543}
-  - component: {fileID: 829060542}
+  - component: {fileID: 829060546}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -478,19 +478,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -126}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &829060542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 829060540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91b97b27dbfc08e44a90d346d3477471, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SceneName: StoryScene
 --- !u!114 &829060543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,9 +522,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 829060542}
-        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
-        m_MethodName: ChengeScene
+      - m_Target: {fileID: 829060546}
+        m_TargetAssemblyTypeName: TitleButtom, Assembly-CSharp
+        m_MethodName: NextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -585,6 +572,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 829060540}
   m_CullTransparentMesh: 1
+--- !u!114 &829060546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829060540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 005b87cd14950b9448558e3539f3bbbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneName: StoryScene
 --- !u!1 &1364581231
 GameObject:
   m_ObjectHideFlags: 0

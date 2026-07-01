@@ -54,6 +54,11 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(2f);
         HealEffect.SetActive(false);
     }
+    IEnumerator Reset_Time()//リセット
+    {
+        yield return new WaitForSeconds(1f);
+        pos_reset_flag = false;
+    }
 
     void Awake() //Startより早く呼ばれる
     {
@@ -95,7 +100,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("ステージの上");
             abyssflag = false;
-            pos_reset_flag = false;
+            StartCoroutine(Reset_Time());//リセット解除
         }
     }
 

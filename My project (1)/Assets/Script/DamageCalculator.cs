@@ -68,8 +68,8 @@ public class EnemyAttack
 {
     //クールタイム
     //突き攻撃用
-    const float th_Cooldown = 2500f;
-    const float th_Cooldown2 = 625f;
+    const float th_Cooldown = 500f;
+    const float th_Cooldown2 = 200f;
     //突進攻撃用
     const float ta_Cooldown = 2500f;
     const float ta_Cooldown2 = 400f;
@@ -94,7 +94,7 @@ public class EnemyAttack
                 second = 0;
                 Count++;
             }
-            if(second >= 2000)//攻撃前にエフェクトを出す
+            if(second >= 400)//攻撃前にエフェクトを出す
             {
                 apeffect = true;
             }
@@ -117,12 +117,12 @@ public class EnemyAttack
     public (bool, bool,bool, bool, int, Vector3) TacklAttack(bool ap, bool Encounter, int count, Vector3 pos, Vector3 forward, float speed)
     {
         second++;
-        if(second >= 1000)
+        if(second >= 500)
         {
             count += 1;
             second = 0;
         }
-        if (second >= 500)//攻撃前にエフェクトを出す
+        if (second >= 400)//攻撃前にエフェクトを出す
         {
             apeffect = true;
         }
@@ -156,7 +156,7 @@ public class EnemyAttack
                 second = 0;
                 Count++;
             }
-            if (second >= 2000) //攻撃前にエフェクトを出す
+            if (second >= 400) //攻撃前にエフェクトを出す
             {
                 apeffect = true;
             }
@@ -191,7 +191,7 @@ public class EnemyAttack
                 second = 0;
                 Count++;
             }
-            if (Count == 0 && second >= 2000)//攻撃前にエフェクトを出す
+            if (Count == 0 && second >= 400)//攻撃前にエフェクトを出す
             {
                 apeffect = true;
             }
@@ -206,7 +206,7 @@ public class EnemyAttack
                 thrust_attack = false;
                 ap = false;
             }
-            if (Count == 2 && second == 2000)//攻撃前にエフェクトを出す
+            if (Count == 2 && second == 400)//攻撃前にエフェクトを出す
             {
                 apeffect = true;
             }
@@ -216,11 +216,11 @@ public class EnemyAttack
                 apeffect = false;
                 ap = true;
             }
-            if(Count == 3 && second == 400) //アニメーションの後に攻撃
+            if(Count == 3 && second == 60) //アニメーションの後に攻撃
             {
                 around_attack = true;
             }
-            if (Count == 3 && second == 2000)//攻撃終了
+            if (Count == 3 && second == 200)//攻撃終了
             {
                 Count = 0;
                 thrust_attack = false;
@@ -249,8 +249,8 @@ public class Effect
     private int second;
     private int count;
     private const int maxcount = 2;
-    private const int time = 60;
-    private const int cooltime = 120;
+    private const int time = 10;
+    private const int cooltime = 30;
     private bool Invincible = false; //無敵時間
 
     public (bool, bool) DamageEffect(bool isvisible, int hp)

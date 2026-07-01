@@ -10,7 +10,7 @@ public class CameraManager: MonoBehaviour
 
     //カメラ回転
     private Vector3 m_Rotation;
-    const float Speed = 0.05f;  //回転スピード
+    const float Speed = 40f;  //回転スピード
     private float rx, ry, rz;
 
     //カメラズーム
@@ -45,8 +45,8 @@ public class CameraManager: MonoBehaviour
         var qKey = current.qKey; //Qキーの入力状態取得
         var eKey = current.eKey; //Eキーの入力状態取得
 
-        if (qKey.isPressed) ry += Speed;
-        if (eKey.isPressed) ry -= Speed;
+        if (qKey.isPressed) ry += Speed * Time.deltaTime;
+        if (eKey.isPressed) ry -= Speed * Time.deltaTime;
 
         m_Rotation = new Vector3(rx, ry, rz);  //カメラ回転
         transform.eulerAngles = m_Rotation;

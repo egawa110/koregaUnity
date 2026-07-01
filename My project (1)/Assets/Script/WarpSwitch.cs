@@ -17,7 +17,7 @@ public class WarpSwitch : MonoBehaviour
     {
         WarpPos = Vector3.zero; WarpRotation = Vector3.zero;
         WarpFlag = false;
-        CoolTime = 60f;
+        CoolTime = 30f;
         Count = 0f;
     }
 
@@ -45,7 +45,7 @@ public class WarpSwitch : MonoBehaviour
             Debug.Log("ワープスイッチを押した");
             player.transform.eulerAngles = WarpRotation;
             player.transform.position = WarpPos;  //プレイヤーをワープ
-            if (Count == CoolTime)
+            if (Count == CoolTime) //ワープ時の読み込みの為のクールタイム
             {
                 Count = 0f;
                 WarpFlag = false;
