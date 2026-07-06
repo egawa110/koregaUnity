@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,13 +16,13 @@ public class HealButton : MonoBehaviour
     public static int potion2_price = 500;
     public static int potion3_price = 1000;
 
-    public Text[] have_potion1_Text;
-    public Text[] have_potion2_Text;
-    public Text[] have_potion3_Text;
+    public TMP_Text[] have_potion1_Text;
+    public TMP_Text[] have_potion2_Text;
+    public TMP_Text[] have_potion3_Text;
 
-    public Text[] potion1_priceText;
-    public Text[] potion2_priceText;
-    public Text[] potion3_priceText;
+    public TMP_Text[] potion1_priceText;
+    public TMP_Text[] potion2_priceText;
+    public TMP_Text[] potion3_priceText;
 
     void Start()
     {

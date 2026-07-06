@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,13 +13,13 @@ public class StatusButton : MonoBehaviour
     public static int stp_price = 100;
     public static int lgp_price = 100;
 
-    public Text[] hpText;
-    public Text[] strongPowerText;
-    public Text[] lightPowerText;
+    public TMP_Text[] hpText;
+    public TMP_Text[] strongPowerText;
+    public TMP_Text[] lightPowerText;
 
-    public Text[] hp_priceText;
-    public Text[] stp_priceText;
-    public Text[] lgp_priceText;
+    public TMP_Text[] hp_priceText;
+    public TMP_Text[] stp_priceText;
+    public TMP_Text[] lgp_priceText;
 
     public void Status_hp()
     {
