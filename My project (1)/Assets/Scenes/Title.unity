@@ -451,6 +451,7 @@ GameObject:
   - component: {fileID: 829060543}
   - component: {fileID: 829060546}
   - component: {fileID: 829060547}
+  - component: {fileID: 829060548}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -582,6 +583,20 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &829060548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829060540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f345dbe61010cf459c5c9aaa1c78a9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &1031954869
 GameObject:
   m_ObjectHideFlags: 0

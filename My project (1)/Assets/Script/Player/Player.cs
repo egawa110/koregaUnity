@@ -112,9 +112,14 @@ public class Player : MonoBehaviour
         float h = Input.GetAxisRaw("Horizontal"); // A/D
         float v = Input.GetAxisRaw("Vertical");   // W/S
         dir = new Vector3(h, 0, v).normalized; //プレイヤーの向きを動かす用
-        if (dir.magnitude > 0)
+        if(Input.GetAxisRaw("Horizontal") == 1 ||Input.GetAxisRaw("Vertical") == 1 ||
+            Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == -1)
         {
-            yaw = Quaternion.LookRotation(dir);
+            if (dir.magnitude > 0)
+            {
+                yaw = Quaternion.LookRotation(dir);
+            }
+
         }
 
         //攻撃
