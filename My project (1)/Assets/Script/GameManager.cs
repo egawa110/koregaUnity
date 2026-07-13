@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     //ポーズ画面
     public GameObject Pause;
     private bool isVisible = false;
+
     //タイマーとかHPとか
     public GameObject TimePanel;
     public Text TimeText;
@@ -35,7 +36,8 @@ public class GameManager : MonoBehaviour
     {
         var current = Keyboard.current;  //現在のキーボード情報
         if (current == null) return;     //キーボード接続チェック
-        var escKey = current.escapeKey; //Wキーの入力状態取得
+
+        var escKey = current.escapeKey;  //Wキーの入力状態取得
 
         //UIパネル
         if (!goal.isGoal)
@@ -58,6 +60,7 @@ public class GameManager : MonoBehaviour
             isVisible = !isVisible;
             Pause.SetActive(isVisible);
             Time.timeScale = 0; //ポーズ画面中は時間停止
+
         }
         if (!isVisible)
         {
@@ -76,6 +79,8 @@ public class GameManager : MonoBehaviour
         if(player.PlayerDeth == true)
         {
             DethPanel.SetActive(true);
+            TimePanel.SetActive(false);
+
         }
     }
 }

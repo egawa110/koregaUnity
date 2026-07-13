@@ -1,8 +1,11 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
+    public string SceneName; //移動したいシーン名
+
     public Vector3 PlayerPos;       //プレイヤーの位置
     public Vector3 pRotate;    //プレイヤーの向き
     private Vector3 dir;
@@ -140,58 +143,64 @@ public class Player : MonoBehaviour
         var digit1Key = current.digit1Key; //1キーの入力状態取得
         var digit2Key = current.digit2Key; //2キーの入力状態取得
         var digit3Key = current.digit3Key; //3キーの入力状態取得
-        //20回復
-        if (digit1Key.isPressed && !heal_20 
-            && HealButton.potion1 > 0)
+        var rKey = current.rKey;       //Rキーの入力状態取得
+
+        if (Time.timeScale == 1)
         {
-            if(maxhp > hp)
+            //20回復
+            if (digit1Key.isPressed && !heal_20
+                && HealButton.potion1 > 0)
             {
-                hp += HealButton.potion1_heal;
-                HealButton.potion1--;
-                heal_20 = true;
-                StartCoroutine(HealEffect_Time());//回復エフェクト
-                if (hp >= maxhp)
+                if (maxhp > hp)
                 {
-                    hp = maxhp;
-                }
+                    hp += HealButton.potion1_heal;
+                    HealButton.potion1--;
+                    heal_20 = true;
+                    StartCoroutine(HealEffect_Time());//回復エフェクト
+                    if (hp >= maxhp)
+                    {
+                        hp = maxhp;
+                    }
 
+                }
             }
-        }
-        //50回復
-        if (digit2Key.isPressed && !heal_50
-            && HealButton.potion2 > 0)
-        {
-            if (maxhp > hp)
+            //50回復
+            if (digit2Key.isPressed && !heal_50
+                && HealButton.potion2 > 0)
             {
-                hp += HealButton.potion2_heal;
-                HealButton.potion2--;
-                heal_50 = true;
-                StartCoroutine(HealEffect_Time());//回復エフェクト
-
-                if (hp >= maxhp)
+                if (maxhp > hp)
                 {
-                    hp = maxhp;
-                }
+                    hp += HealButton.potion2_heal;
+                    HealButton.potion2--;
+                    heal_50 = true;
+                    StartCoroutine(HealEffect_Time());//回復エフェクト
 
+                    if (hp >= maxhp)
+                    {
+                        hp = maxhp;
+                    }
+
+                }
             }
-        }
-        //100回復
-        if (digit3Key.isPressed && !heal_100
-            && HealButton.potion3 > 0)
-        {
-            if (maxhp > hp)
+            //100回復
+            if (digit3Key.isPressed && !heal_100
+                && HealButton.potion3 > 0)
             {
-                hp += HealButton.potion3_heal;
-                HealButton.potion3--;
-                heal_100 = true;
-                StartCoroutine(HealEffect_Time());//回復エフェクト
-
-                if (hp >= maxhp)
+                if (maxhp > hp)
                 {
-                    hp = maxhp;
-                }
+                    hp += HealButton.potion3_heal;
+                    HealButton.potion3--;
+                    heal_100 = true;
+                    StartCoroutine(HealEffect_Time());//回復エフェクト
 
+                    if (hp >= maxhp)
+                    {
+                        hp = maxhp;
+                    }
+
+                }
             }
+
         }
         if (!digit1Key.isPressed) heal_20 = false;
         if (!digit2Key.isPressed) heal_50 = false;
@@ -219,11 +228,20 @@ public class Player : MonoBehaviour
             PlayerPos = StartPosition.transform.position; //スタート地点の位置を取得
             transform.position = PlayerPos;               //プレイヤーの位置
 
-            //transform.position = startpos;
             transform.eulerAngles = Vector3.zero;
             rb.linearVelocity = Vector3.zero;  //直線の慣性をリセット
             rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット
             pos_reset_flag = true;
+        }
+
+        //ポーズ画面中
+        if (Time.timeScale == 0)
+        {
+            if (rKey.isPressed)
+            {
+                SceneManager.LoadScene(SceneName); //シーン移動
+            }
+
         }
 
         PlayerPos = transform.position; //Enemyに渡すPlayerの位置
