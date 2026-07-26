@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class HealButton : MonoBehaviour
 {
     public static int potion1 = 5;
-    public static int potion2 = 5;
-    public static int potion3 = 5;
+    public static int potion2 = 0;
+    public static int potion3 = 0;
 
     public const int potion1_heal = 20;
     public const int potion2_heal = 50;

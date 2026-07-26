@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
     public GoalManager goal;
     Effect ef = new Effect(); //ダメージを受けた時に点滅する
     public WarpSwitch[] wp;
+    TitleButtom TB = new TitleButtom();
+
     enum m_PStatus
     {
         HP = 100,         //HP
@@ -94,6 +96,8 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Goal")) //Goalタグに触れた時
         {
             goal.isGoal = true;
+            TB.FinishTutorial();
+
         }
         if (other.CompareTag("HalfGoal")) //HalfGoalタグに触れた時
         {

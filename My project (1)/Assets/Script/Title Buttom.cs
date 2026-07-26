@@ -3,8 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class TitleButtom : MonoBehaviour
 {
-    public string SceneName; //移動したいシーン名
-
     private void Start()
     {
         Application.targetFrameRate = 50;
@@ -12,8 +10,26 @@ public class TitleButtom : MonoBehaviour
 
     public void NextScene()
     {
-        SceneManager.LoadScene(SceneName); //シーン移動
-        Time.timeScale = 1;
+        int done = PlayerPrefs.GetInt("TutorialDone", 0);
 
+        if (done == 0)
+        {
+            SceneManager.LoadScene("StoryScene");
+
+        }
+        else
+        {
+            SceneManager.LoadScene("Menu");
+
+        }
+        Debug.Log(done);
+
+        Time.timeScale = 1;
+    }
+
+    public void FinishTutorial()
+    {
+        PlayerPrefs.SetInt("TutorialDone", 1);
+        PlayerPrefs.Save();
     }
 }
