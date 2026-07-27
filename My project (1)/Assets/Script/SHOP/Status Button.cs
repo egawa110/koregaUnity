@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class StatusButton : MonoBehaviour
 {
@@ -21,9 +22,12 @@ public class StatusButton : MonoBehaviour
     public TMP_Text[] stp_priceText;
     public TMP_Text[] lgp_priceText;
 
-    public void Status_hp()
+    public AudioSource audioSource; //ボタンクリック効果音
+
+    IEnumerator s1()//効果音が鳴ってから
     {
-        if(Money_text.money >= hp_price &&
+        yield return new WaitForSeconds(0.3f);
+        if (Money_text.money >= hp_price &&
             shop_hp < max_status)
         {
             shop_hp += 10;
@@ -31,10 +35,11 @@ public class StatusButton : MonoBehaviour
             hp_price += 10;
 
         }
-    }
 
-    public void Status_strongpower()
+    }
+    IEnumerator s2()//効果音が鳴ってから
     {
+        yield return new WaitForSeconds(0.3f);
         if (Money_text.money >= stp_price &&
             shop_strongPower < max_status)
         {
@@ -43,12 +48,10 @@ public class StatusButton : MonoBehaviour
             stp_price += 50;
 
         }
-
-
     }
-
-    public void Status_lightpower()
+    IEnumerator s3()//効果音が鳴ってから
     {
+        yield return new WaitForSeconds(0.3f);
         if (Money_text.money >= lgp_price &&
             shop_lightPower < max_status)
         {
@@ -57,6 +60,27 @@ public class StatusButton : MonoBehaviour
             lgp_price += 20;
 
         }
+    }
+
+    public void Status_hp()
+    {
+        audioSource.Play();
+        StartCoroutine(s1());
+
+    }
+
+    public void Status_strongpower()
+    {
+        audioSource.Play();
+        StartCoroutine(s2());
+
+
+    }
+
+    public void Status_lightpower()
+    {
+        audioSource.Play();
+        StartCoroutine(s3());
 
     }
 

@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class HealButton : MonoBehaviour
 {
@@ -24,16 +25,39 @@ public class HealButton : MonoBehaviour
     public TMP_Text[] potion2_priceText;
     public TMP_Text[] potion3_priceText;
 
+    public AudioSource audioSource; //ボタンクリック効果音
+
     void Start()
     {
+    }
+    IEnumerator p1()//効果音が鳴ってから
+    {
+        yield return new WaitForSeconds(0.3f);
+        potion1 += 1;
+        Money_text.money -= potion1_price;
+
+    }
+    IEnumerator p2()//効果音が鳴ってから
+    {
+        yield return new WaitForSeconds(0.3f);
+        potion2 += 1;
+        Money_text.money -= potion2_price;
+
+    }
+    IEnumerator p3()//効果音が鳴ってから
+    {
+        yield return new WaitForSeconds(0.3f);
+        potion3 += 1;
+        Money_text.money -= potion3_price;
+
     }
 
     public void potion1_button()
     {
         if (Money_text.money >= potion1_price)
         {
-            potion1 += 1;
-            Money_text.money -= potion1_price;
+            audioSource.Play();
+            StartCoroutine(p1());
 
         }
     }
@@ -41,8 +65,8 @@ public class HealButton : MonoBehaviour
     {
         if (Money_text.money >= potion2_price)
         {
-            potion2 += 1;
-            Money_text.money -= potion2_price;
+            audioSource.Play();
+            StartCoroutine(p2());
 
         }
     }
@@ -51,8 +75,8 @@ public class HealButton : MonoBehaviour
     {
         if (Money_text.money >= potion3_price)
         {
-            potion3 += 1;
-            Money_text.money -= potion3_price;
+            audioSource.Play();
+            StartCoroutine(p3());
 
         }
     }
