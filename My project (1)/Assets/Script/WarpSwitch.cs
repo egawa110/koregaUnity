@@ -10,7 +10,7 @@ public class WarpSwitch : MonoBehaviour
     public bool WarpFlag;
     private float CoolTime;
     private float Count;
-
+    public int warpcount = 0;
     public Player player;
 
     void Start()
@@ -40,14 +40,15 @@ public class WarpSwitch : MonoBehaviour
             {
                 pstart.transform.position = startpos;
             }
-
-                Count++;
+            Count++;
+            warpcount++;
             Debug.Log("ワープスイッチを押した");
             player.transform.eulerAngles = WarpRotation;
             player.transform.position = WarpPos;  //プレイヤーをワープ
             if (Count == CoolTime) //ワープ時の読み込みの為のクールタイム
             {
                 Count = 0f;
+                warpcount = 0;
                 WarpFlag = false;
                 Player.pos_reset_flag = false;
             }

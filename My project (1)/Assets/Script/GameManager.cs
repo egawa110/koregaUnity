@@ -23,12 +23,19 @@ public class GameManager : MonoBehaviour
     public Text GoalTime;
     //ƒvƒŒƒCƒ„[€–S
     public GameObject DethPanel;
+    private bool isplayd = false;
+    //Œø‰Ê‰¹
+    AudioSource audioSource;
+    public AudioClip moneysound;
+    public AudioClip dethsound;
 
     public GoalManager goal;
     public Player player;
     void Start()
     {
         TimeCount = 0f;
+        //Œø‰Ê‰¹
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -47,6 +54,12 @@ public class GameManager : MonoBehaviour
             TimeText.text = "Time : " + TimeCount. ToString ("F1");
             //Š‹à
             Money_Text.text = "G:" + Money_text.money;
+            if (Money_text.oldmoney != Money_text.money)
+            {
+                Money_text.oldmoney = Money_text.money;
+                audioSource.PlayOneShot(moneysound);//Œø‰Ê‰¹
+
+            }
             //‰ñ•œ–ò
             potion1_Text.text = "~" + HealButton.potion1;
             potion2_Text.text = "~" + HealButton.potion2;
@@ -80,7 +93,11 @@ public class GameManager : MonoBehaviour
         {
             DethPanel.SetActive(true);
             TimePanel.SetActive(false);
-
+            if (player.PlayerDeth == true && isplayd == false)
+            {
+                audioSource.PlayOneShot(dethsound);//Œø‰Ê‰¹
+                isplayd = true;
+            }
         }
     }
 }

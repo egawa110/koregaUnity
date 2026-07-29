@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -38,7 +39,13 @@ public class Player : MonoBehaviour
     public bool PlayerDeth; //死亡フラグ
     public bool abyssflag;
     public static bool pos_reset_flag;
+    //効果音
+    AudioSource audioSource;
+    public AudioClip healsound;
+    public AudioClip warpsound;
+    public AudioClip goalsound;
 
+    //他のスクリプト
     private Rigidbody rb;
     public GoalManager goal;
     Effect ef = new Effect(); //ダメージを受けた時に点滅する
@@ -58,6 +65,7 @@ public class Player : MonoBehaviour
         HealEffect.SetActive(true);
         yield return new WaitForSeconds(2f);
         HealEffect.SetActive(false);
+
     }
     IEnumerator Reset_Time()//リセット
     {
@@ -89,6 +97,8 @@ public class Player : MonoBehaviour
         invincible = false;
         //リセット
         pos_reset_flag = false;
+        //効果音
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -97,11 +107,8 @@ public class Player : MonoBehaviour
         {
             goal.isGoal = true;
             TB.FinishTutorial();
-
-        }
-        if (other.CompareTag("HalfGoal")) //HalfGoalタグに触れた時
-        {
             goal.GoalCount++;
+
         }
         if (other.CompareTag("Startpos"))
         {
@@ -165,7 +172,7 @@ public class Player : MonoBehaviour
                     {
                         hp = maxhp;
                     }
-
+                    audioSource.PlayOneShot(healsound);//効果音
                 }
             }
             //50回復
@@ -183,6 +190,7 @@ public class Player : MonoBehaviour
                     {
                         hp = maxhp;
                     }
+                    audioSource.PlayOneShot(healsound);//効果音
 
                 }
             }
@@ -201,6 +209,7 @@ public class Player : MonoBehaviour
                     {
                         hp = maxhp;
                     }
+                    audioSource.PlayOneShot(healsound);//効果音
 
                 }
             }
@@ -209,12 +218,18 @@ public class Player : MonoBehaviour
         if (!digit1Key.isPressed) heal_20 = false;
         if (!digit2Key.isPressed) heal_50 = false;
         if (!digit3Key.isPressed) heal_100 = false;
+        //ゴール効果音
+        if(goal.GoalCount == 1)
+        {
+            audioSource.PlayOneShot(goalsound);//効果音
 
+        }
         //HPが0になると消える
         if (hp <= 0)
         {
             Destroy(gameObject);
             PlayerDeth = true;
+
         }
         //ワープ
         foreach (var ws in wp)
@@ -224,6 +239,11 @@ public class Player : MonoBehaviour
                 rb.linearVelocity = Vector3.zero;  //直線の慣性をリセット
                 rb.angularVelocity = Vector3.zero;  //回転の慣性をリセット
                 pos_reset_flag = true;
+
+            }
+            if(ws.warpcount == 1)
+            {
+                audioSource.PlayOneShot(warpsound);//効果音
             }
         }
         if (abyssflag)

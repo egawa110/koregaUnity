@@ -6,6 +6,7 @@ public class Money_text : MonoBehaviour
 {
     public TMP_Text MoneyText;
     public static int money;
+    public static int oldmoney = 0;
 
     void Start()
     {
