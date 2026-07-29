@@ -34,7 +34,7 @@ public class TitleButtom : MonoBehaviour
         }
         else
         {
-            StartCoroutine(done1_Scene());
+            StartCoroutine(done0_Scene());
         }
         Debug.Log(done);
 

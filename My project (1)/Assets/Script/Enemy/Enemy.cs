@@ -40,20 +40,20 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        var current = Keyboard.current;  //現在のキーボード情報
-        if (current == null) return;     //キーボード接続チェック
+        //var current = Keyboard.current;  //現在のキーボード情報
+        //if (current == null) return;     //キーボード接続チェック
 
-        var vKey = current.vKey; //Wキーの入力状態取得
-        if (vKey.isPressed && !f)
-        {
-            f = true;
-            enemyhp -= 10;
-        }
-        else if(!vKey.isPressed)
-        {
-            f = false;
+        //var vKey = current.vKey; //Wキーの入力状態取得
+        //if (vKey.isPressed && !f)
+        //{
+        //    f = true;
+        //    enemyhp -= 10;
+        //}
+        //else if(!vKey.isPressed)
+        //{
+        //    f = false;
 
-        }
+        //}
         //ダメージ受けた時に点滅エフェクト
         (isvisible, invincible) = ef.DamageEffect(isvisible, enemyhp);
         EnemyObj.SetActive(isvisible);
