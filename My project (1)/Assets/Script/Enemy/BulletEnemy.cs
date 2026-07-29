@@ -20,6 +20,10 @@ public class BulletEnemy : MonoBehaviour
     public const int hp = 10;
     public const int bullet_money = 300;
     public GameObject money;
+    //効果音
+    bool atsoud = false;
+    AudioSource audioSource;
+    public AudioClip attacksound;
 
     //クールタイム
     public int Count; //攻撃までのカウントダウン
@@ -36,6 +40,7 @@ public class BulletEnemy : MonoBehaviour
         attack = false;
         enemy.enemyhp = hp;
         bulletSpeed = 10f;
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -82,6 +87,16 @@ public class BulletEnemy : MonoBehaviour
                 attacknow = true;
                 Destroy(bullet, 3f);
             }
+            if (attack == true && atsoud == false)
+            {
+                audioSource.PlayOneShot(attacksound);//効果音
+                atsoud = true;
+            }
+            if (attack == false)
+            {
+                atsoud = false;
+            }
+
             apeffectObj.SetActive(apeffect); //攻撃前のエフェクト
 
         }

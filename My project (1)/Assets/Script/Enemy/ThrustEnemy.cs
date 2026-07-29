@@ -16,6 +16,10 @@ public class ThrustEnemy : MonoBehaviour
     public const int hp = 20;
     public const int thrust_money = 200;
     public GameObject money;
+    //効果音
+    bool atsoud = false;
+    AudioSource audioSource;
+    public AudioClip attacksound;
 
     //クールタイム
     public int Count; //攻撃までのカウントダウン
@@ -29,6 +33,7 @@ public class ThrustEnemy : MonoBehaviour
         target = GameObject.Find("Player"); //プレイヤーオブジェクトを取得
         attack = false;
         enemy.enemyhp = hp;
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -61,7 +66,15 @@ public class ThrustEnemy : MonoBehaviour
             if (Encounter)//プレイヤーのいる方向に攻撃する
             {
                 (ap, Encounter, attack, apeffect, Count) = EAttack.ThrustAttack(ap, Encounter);
-
+            }
+            if (attack == true && atsoud == false)
+            {
+                audioSource.PlayOneShot(attacksound);//効果音
+                atsoud = true;
+            }
+            if (attack == false)
+            {
+                atsoud = false;
             }
             thrustAttack.SetActive(attack);
             apeffectObj.SetActive(apeffect);

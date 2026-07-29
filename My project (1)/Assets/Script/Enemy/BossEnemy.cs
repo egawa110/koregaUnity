@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 public class BossEnemy : MonoBehaviour
 {
@@ -24,6 +25,12 @@ public class BossEnemy : MonoBehaviour
     //攻撃力
     public const int thrust_power = 50;
     public const int around_power = 30;
+    //効果音
+    bool atsoud1 = false;
+    bool atsoud2 = false;
+    AudioSource audioSource;
+    public AudioClip attacksound1;
+    public AudioClip attacksound2;
 
     //クールタイム
     public int Count; //攻撃までのカウントダウン
@@ -44,6 +51,7 @@ public class BossEnemy : MonoBehaviour
         maxhp = hp;
         hpSlider.maxValue = maxhp;
         hpSlider.value = maxhp;
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -79,6 +87,27 @@ public class BossEnemy : MonoBehaviour
                 (ap, Encounter, thrust_attack, around_attack, around_anim, apeffect, Count) = EAttack.Boss_Attack(ap, Encounter);
 
             }
+            //突き攻撃効果音
+            if (thrust_attack == true && atsoud1 == false)
+            {
+                audioSource.PlayOneShot(attacksound1);//効果音1
+                atsoud1 = true;
+            }
+            if (thrust_attack == false)
+            {
+                atsoud1 = false;
+            }
+            //周囲攻撃効果音
+            if (around_attack == true && atsoud2 == false)
+            {
+                audioSource.PlayOneShot(attacksound2);//効果音2
+                atsoud2 = true;
+            }
+            if (around_attack == false)
+            {
+                atsoud2 = false;
+            }
+
             thrustAttack.SetActive(thrust_attack); //突き攻撃
             aroundAttack.SetActive(around_attack); //周囲攻撃
             apeffectObj.SetActive(apeffect);       //攻撃前エフェクト

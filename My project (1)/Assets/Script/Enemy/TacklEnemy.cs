@@ -34,6 +34,7 @@ public class TacklEnemy : MonoBehaviour
         target = GameObject.Find("Player"); //プレイヤーオブジェクトを取得
         attack = false;
         enemy.enemyhp = hp;
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -74,6 +75,7 @@ public class TacklEnemy : MonoBehaviour
                 ap = false;
                 EAttack.ResetAttack();
             }
+
             tacklAttack.SetActive(attack);
             apeffectObj.SetActive(apeffect);
         }

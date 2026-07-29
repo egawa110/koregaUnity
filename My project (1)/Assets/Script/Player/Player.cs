@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     public AudioClip healsound;
     public AudioClip warpsound;
     public AudioClip goalsound;
-
+    bool gosoud =false;
     //他のスクリプト
     private Rigidbody rb;
     public GoalManager goal;
@@ -219,10 +219,10 @@ public class Player : MonoBehaviour
         if (!digit2Key.isPressed) heal_50 = false;
         if (!digit3Key.isPressed) heal_100 = false;
         //ゴール効果音
-        if(goal.GoalCount == 1)
+        if(goal.isGoal && gosoud == false)
         {
             audioSource.PlayOneShot(goalsound);//効果音
-
+            gosoud = true;
         }
         //HPが0になると消える
         if (hp <= 0)

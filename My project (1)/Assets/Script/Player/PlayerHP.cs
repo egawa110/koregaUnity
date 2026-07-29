@@ -5,32 +5,49 @@ public class PlayerHP : MonoBehaviour
     public Player player;
     public HPBar hpb;
     private const int abyssdamage = 10;  //“Ş—‚É—‚¿‚½‚Ìƒ_ƒ[ƒW
+    //Œø‰Ê‰¹
+    AudioSource audioSource;
+    public AudioClip damagesound;
 
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         //ThrustEnemy‚ÌUŒ‚
         if (other.CompareTag("ThrustAttack")) 
         {
-            player.hp -= ThrustEnemy.power; 
+            player.hp -= ThrustEnemy.power;
+            audioSource.PlayOneShot(damagesound);//Œø‰Ê‰¹
+
         }
         //TacklEnemy‚ÌUŒ‚
         if (other.CompareTag("TacklAttack")) 
         {
-            player.hp -= TacklEnemy.power; 
+            player.hp -= TacklEnemy.power;
+            audioSource.PlayOneShot(damagesound);//Œø‰Ê‰¹
+
         }
         //BulletEnemy‚ÌUŒ‚
         if (other.CompareTag("BulletAttack")) 
         {
-            player.hp -= BulletEnemy.power; 
+            player.hp -= BulletEnemy.power;
+            audioSource.PlayOneShot(damagesound);//Œø‰Ê‰¹
+
         }
         //BOSS‚ÌUŒ‚
         if (other.CompareTag("BossThrust")) 
         {
-            player.hp -= BossEnemy.thrust_power; 
+            player.hp -= BossEnemy.thrust_power;
+            audioSource.PlayOneShot(damagesound);//Œø‰Ê‰¹
+
         }
         if (other.CompareTag("BossAround")) 
         {
-            player.hp -= BossEnemy.around_power; 
+            player.hp -= BossEnemy.around_power;
+            audioSource.PlayOneShot(damagesound);//Œø‰Ê‰¹
+
         }
 
         if (other.CompareTag("Abyss"))
